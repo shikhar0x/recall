@@ -1,0 +1,38 @@
+Java Data Structures — Study Notes
+
+This document summarizes the core data structures and algorithms we
+covered in the course, using Java as the reference language.
+
+An array is the most basic data structure in Java. It stores a fixed
+number of elements of the same type in contiguous memory, and every
+element can be read or written by index in constant time, which is
+written as Big-O O(1). The main drawback of a plain array is that its
+size cannot change after creation.
+
+An ArrayList solves that problem. An ArrayList wraps an internal array
+and grows automatically when it runs out of capacity, copying the old
+elements into a larger backing array. Adding an element at the end is
+amortized O(1), while inserting in the middle costs O(n) because all
+later elements must be shifted.
+
+Linear search is the simplest searching algorithm. It scans the
+collection from the first element to the last, comparing every element
+with the target, so it runs in O(n) time on average and in the worst
+case. It works on unsorted data and needs no extra memory.
+
+Insertion sort is a simple comparison sorting algorithm. It builds the
+final sorted order one element at a time: each new element is compared
+with the sorted prefix and shifted right until it sits in the correct
+place. Insertion sort is stable, needs only O(1) extra space, runs in
+O(n) time on nearly sorted input, and degrades to O(n squared) on
+random input, which is why we implement it by hand for learning
+purposes before moving on to merge sort and quicksort.
+
+Recursion appears everywhere in this course. A recursive method solves
+a problem by calling itself on a smaller input until it reaches a base
+case. Recursion makes divide and conquer algorithms such as merge sort
+easy to express, but every call consumes stack memory.
+
+Finally, Big-O notation lets us compare algorithms by how their running
+time grows with the input size: O(1) constant, O(log n) logarithmic,
+O(n) linear, O(n log n) linearithmic, and O(n squared) quadratic.

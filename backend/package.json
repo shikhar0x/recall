@@ -1,0 +1,9 @@
+{
+  "name": "recall-backend",
+  "private": true,
+  "scripts": {
+    "dev": "bash run.sh",
+    "build": "mvn -q -DskipTests package",
+    "test": "mvn test"
+  }
+}
