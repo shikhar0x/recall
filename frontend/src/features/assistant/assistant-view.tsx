@@ -39,6 +39,7 @@ import {
 } from "@/lib/api/recall-api";
 import { cn } from "@/lib/utils";
 import { ErrorBanner } from "@/components/common/error-banner";
+import { MarkdownContent } from "@/components/common/markdown-content";
 
 export interface AssistantViewProps {
   /** null = health unknown yet (backend check in progress). */
@@ -300,9 +301,13 @@ export function AssistantView({ aiConfigured, onOpenDocument }: AssistantViewPro
                         : "border-slate-800 bg-slate-900/70 text-slate-200"
                     )}
                   >
-                    <p className="whitespace-pre-wrap text-sm leading-relaxed">
-                      {m.text}
-                    </p>
+                    {m.isError ? (
+                      <p className="whitespace-pre-wrap text-sm leading-relaxed text-red-200">
+                        {m.text}
+                      </p>
+                    ) : (
+                      <MarkdownContent content={m.text} />
+                    )}
 
                     {!m.isError && m.usedAi === false ? (
                       <p className="mt-2 text-xs text-slate-500">
@@ -487,8 +492,8 @@ export function AssistantView({ aiConfigured, onOpenDocument }: AssistantViewPro
                 <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
                   Summary of {summary.documentName}
                 </p>
-                <div className="max-h-72 overflow-y-auto whitespace-pre-wrap rounded-lg bg-slate-950/60 p-3 text-sm leading-relaxed text-slate-200 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-slate-700">
-                  {summary.summary}
+                <div className="max-h-80 overflow-y-auto rounded-lg bg-slate-950/60 p-3.5 text-sm leading-relaxed text-slate-200 border border-slate-800/80 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-slate-700">
+                  <MarkdownContent content={summary.summary} />
                 </div>
                 {summary.truncated ? (
                   <p className="text-[11px] text-amber-300/90">
